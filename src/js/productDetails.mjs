@@ -14,6 +14,9 @@ function addToCart() {
   const cart = getLocalStorage("so-cart") || [];
   cart.push(product);
   setLocalStorage("so-cart", cart);
+
+  document.querySelector(".cart").classList.add("shake")
+  setTimeout(() => {document.querySelector(".cart").classList.remove("shake")}, 1000)
 }
 function renderProductDetails() {
   document.querySelector("#productName").innerText = product.Brand.Name;
