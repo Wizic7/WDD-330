@@ -1,3 +1,3 @@
-import productList from "./productList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
-productList("tents", document.querySelector(".product-list"))
+loadHeaderFooter();
