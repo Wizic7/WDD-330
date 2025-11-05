@@ -1,9 +1,4 @@
 import { getLocalStorage, renderListWithTemplate } from "./utils.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
-
-loadHeaderFooter();
-
-
 
 export default function shoppingCart() {
   const cartItems = getLocalStorage("so-cart");
@@ -22,25 +17,11 @@ function displayCartTotal(total) {
     document.querySelector(".list-footer").classList.add("hide");
   }
 }
-
-function calculateListTotal(list) {
-  const amounts = list.map((item) => item.FinalPrice);
-  const total = amounts.reduce((sum, item) => sum + item, 0);
-  return total;
-}
-
-
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const productList = document.querySelector(".product-list");
-  renderListWithTemplate(cartItemTemplate, productList, cartItems);
-}
-
 function cartItemTemplate(item) {
-  return `<li class="cart-card divider">
+  const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
@@ -52,6 +33,11 @@ function cartItemTemplate(item) {
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
+  return newItem;
 }
 
-renderCartContents();
+function calculateListTotal(list) {
+  const amounts = list.map((item) => item.FinalPrice);
+  const total = amounts.reduce((sum, item) => sum + item, 0);
+  return total;
+}
